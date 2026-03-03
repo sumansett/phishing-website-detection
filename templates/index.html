@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phishing Website Detector</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>Phishing Website Detector</h1>
+
+    <p class="subtitle">
+      Upload your website feature file (.csv) and get the prediction result in an Excel file.
+    </p>
+
+    <!-- Steps Section -->
+    <div class="steps">
+      <h2>How to use</h2>
+      <ol>
+        <li>Prepare your website feature file in <b>CSV format</b>.</li>
+        <li>Make sure the CSV contains the <b>same feature columns</b> used in training.</li>
+        <li>Click <b>Choose File</b> and upload your CSV.</li>
+        <li>Click <b>Predict</b>.</li>
+        <li>The system will download an <b>Excel output</b> with predictions.</li>
+      </ol>
+    </div>
+
+    <!-- Upload Form -->
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+      <div class="upload-box">
+
+        <label class="label">Upload your CSV file</label>
+
+        <input type="file" name="file" accept=".csv" required>
+
+        <p class="hint">
+          Accepted file type: <b>.csv</b> | Example: <b>new_website_features.csv</b>
+        </p>
+
+        <button type="submit">Upload CSV & Predict</button>
+      </div>
+    </form>
+
+    <!-- Flash Messages -->
+    {% for msg in get_flashed_messages() %}
+      <div class="msg error">{{ msg }}</div>
+    {% endfor %}
+
+    <!-- Footer -->
+    <div class="footer">
+      Tip: If your CSV format is wrong, the system will show an error message.
+    </div>
+
+  </div>
+
+</body>
+</html>
