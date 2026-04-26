@@ -78,7 +78,6 @@ def predict():
     df.to_excel(output_path, index=False)
     return send_file(output_path, as_attachment=True)
 
-# # Run app
-# if __name__ == "__main__":
-#     port = int(os.environ.get("PORT", 5000))
-#     app.run(host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
