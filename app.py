@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.secret_key = "phishing_secret_key"
 
 # Folders
-UPLOAD_FOLDER = "user_uploads"
-OUTPUT_FOLDER = "Prediction_result"
+UPLOAD_FOLDER = "/tmp/user_uploads"
+OUTPUT_FOLDER = "/tmp/Prediction_result"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
@@ -73,9 +73,9 @@ def predict():
          1: "Legitimate"
     })
 
-    # Save output Excel
-    output_path = os.path.join(OUTPUT_FOLDER, "prediction_results.xlsx")
-    df.to_excel(output_path, index=False)
+    # Save output csv
+    output_path = os.path.join(OUTPUT_FOLDER, "prediction_result.csv")
+    df.to_csv(output_path, index=False)
     return send_file(output_path, as_attachment=True)
 
 if __name__ == '__main__':
